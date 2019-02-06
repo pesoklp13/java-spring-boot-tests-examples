@@ -17,10 +17,21 @@ repositories {
     mavenCentral()
 }
 
+val swaggerVersion = "2.9.2"
+
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    
+    compile("org.springframework.boot:spring-boot-starter-web")
+    
+    compile( "io.springfox:springfox-swagger2:$swaggerVersion")
+    compile("io.springfox:springfox-swagger-ui:$swaggerVersion")
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+springBoot {
+    mainClassName = "pesoklp13.examples.tests.dummy.DummyApplication"
 }
