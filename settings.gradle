@@ -1,3 +1,4 @@
 rootProject.name = 'tests'
 include 'tests-java'
+include 'tests-kotlin'
 

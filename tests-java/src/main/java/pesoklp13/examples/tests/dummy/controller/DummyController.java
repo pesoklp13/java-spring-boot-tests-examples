@@ -82,7 +82,7 @@ public class DummyController {
             method = RequestMethod.GET
     )
     public Dummy getDummyDetail(
-            @ApiParam(value = "id", required = true)
+            @ApiParam(value = "id", required = true, example = "1")
             @PathVariable("id") Long id){
         return null;
     }

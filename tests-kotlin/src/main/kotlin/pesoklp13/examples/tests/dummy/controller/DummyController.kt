@@ -63,7 +63,7 @@ class DummyController {
     )
     @RequestMapping(path = ["/{id}"], method = [RequestMethod.GET])
     fun getDummyDetail(
-        @ApiParam(value = "id", required = true)
+        @ApiParam(value = "id", required = true, example = "1")
         @PathVariable("id")
         id: Long?
     ): Dummy? {

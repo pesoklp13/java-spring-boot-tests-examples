@@ -8,8 +8,8 @@ import org.springframework.boot.runApplication
 class DummyApplication {
 
     companion object {
-        @JvmStatic fun main(vararg args: String?) {
-            runApplication<DummyApplication> {
+        @JvmStatic fun main(args: Array<String>) {
+            runApplication<DummyApplication>(*args) {
                 setBannerMode(Banner.Mode.OFF)
             }
         }
