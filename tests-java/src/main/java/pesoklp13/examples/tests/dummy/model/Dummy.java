@@ -3,6 +3,7 @@ package pesoklp13.examples.tests.dummy.model;
 import io.swagger.annotations.ApiModel;
 import lombok.Getter;
 import lombok.Setter;
+import pesoklp13.examples.tests.dummy.model.enums.DummySourceSystem;
 
 @ApiModel(
         value = "Dummy",
@@ -24,13 +25,4 @@ public class Dummy {
 
     private String externalInformation;
 
-}
-
-@ApiModel(
-        value = "DummySourceSystem",
-        description = "Source System from which dummy were given"
-)
-enum DummySourceSystem {
-    INTERNAL,
-    EXTERNAL
 }
