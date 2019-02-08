@@ -18,7 +18,6 @@ class DummyController {
             value = "get list of dummies",
             response = Dummy::class,
             responseContainer = "List",
-            tags = ["dummy"],
             nickname = "getDummies"
         )
         @ApiResponses(
@@ -34,7 +33,6 @@ class DummyController {
         value = "get list of dummies filtered by source system",
         response = Dummy::class,
         responseContainer = "List",
-        tags = ["dummy"],
         nickname = "getDummiesBySourceSystem"
     )
     @ApiResponses(
@@ -53,7 +51,7 @@ class DummyController {
         return null
     }
 
-    @ApiOperation(value = "get detail of dummy", response = Dummy::class, tags = ["dummy"], nickname = "getDummyDetail")
+    @ApiOperation(value = "get detail of dummy", response = Dummy::class, nickname = "getDummyDetail")
     @ApiResponses(
         value = [ApiResponse(
             code = 200,
