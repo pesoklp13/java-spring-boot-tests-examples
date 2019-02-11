@@ -1,4 +1,3 @@
-import {ActionCreator} from "redux";
 import {
     DUMMY_DETAIL,
     DUMMY_FIND_BY_SOURCE_SYSTEM,
@@ -7,24 +6,25 @@ import {
     GetDummyDetail,
     SearchAllDummies
 } from "./dummy.actions";
-import {DummySourceSystem} from "../../../api/dummy/dummy.model";
+import {Dummy} from "../../../api/dummy/dummy.model";
 
-export const searchAllDummies: ActionCreator<SearchAllDummies> = () => {
+export const searchAllDummiesSuccess = (dummies: Dummy[]): SearchAllDummies => {
     return {
-        type: DUMMY_SEARCH_ALL
+        type: DUMMY_SEARCH_ALL,
+        payload: dummies
     }
 };
 
-export const findDummiesBySourceSystem: ActionCreator<FindDummiesBySourceSystem> = (sourceSystem: DummySourceSystem) => {
+export const findDummiesBySourceSystem = (dummies: Dummy[]): FindDummiesBySourceSystem => {
     return {
         type: DUMMY_FIND_BY_SOURCE_SYSTEM,
-        payload: sourceSystem
+        payload: dummies
     }
 };
 
-export const getDummyDetail: ActionCreator<GetDummyDetail> = (id: number) => {
+export const getDummyDetail = (dummy: Dummy): GetDummyDetail => {
     return {
         type: DUMMY_DETAIL,
-        payload: id
+        payload: dummy
     }
 };
