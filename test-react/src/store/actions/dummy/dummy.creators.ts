@@ -8,6 +8,8 @@ import {
 } from "./dummy.actions";
 import {Dummy} from "../../../api/dummy/dummy.model";
 
+// sync action creators
+
 export const searchAllDummiesSuccess = (dummies: Dummy[]): SearchAllDummies => {
     return {
         type: DUMMY_SEARCH_ALL,
@@ -15,14 +17,14 @@ export const searchAllDummiesSuccess = (dummies: Dummy[]): SearchAllDummies => {
     }
 };
 
-export const findDummiesBySourceSystem = (dummies: Dummy[]): FindDummiesBySourceSystem => {
+export const findDummiesBySourceSystemSuccess = (dummies: Dummy[]): FindDummiesBySourceSystem => {
     return {
         type: DUMMY_FIND_BY_SOURCE_SYSTEM,
         payload: dummies
     }
 };
 
-export const getDummyDetail = (dummy: Dummy): GetDummyDetail => {
+export const getDummyDetailSuccess = (dummy: Dummy): GetDummyDetail => {
     return {
         type: DUMMY_DETAIL,
         payload: dummy

@@ -1,4 +1,4 @@
-import {findDummiesBySourceSystem, getDummyDetail, searchAllDummiesSuccess} from "./dummy.creators";
+import {findDummiesBySourceSystemSuccess, getDummyDetailSuccess, searchAllDummiesSuccess} from "./dummy.creators";
 import {DUMMY_DETAIL, DUMMY_FIND_BY_SOURCE_SYSTEM, DUMMY_SEARCH_ALL, DummyActions} from "./dummy.actions";
 import {Dummy, DummySourceSystem} from "../../../api/dummy/dummy.model";
 
@@ -10,20 +10,20 @@ describe("Dummy creators tests", () => {
         expect(action.payload).toEqual([]);
     });
 
-    it("findDummiesBySourceSystem should return FindDummiesBySourceSystem instance", () => {
-        const action: DummyActions = findDummiesBySourceSystem([]);
+    it("findDummiesBySourceSystemSuccess should return FindDummiesBySourceSystem instance", () => {
+        const action: DummyActions = findDummiesBySourceSystemSuccess([]);
         expect(action.type).toBe(DUMMY_FIND_BY_SOURCE_SYSTEM);
         expect(action.payload).toEqual([]);
     });
 
-    it("getDummyDetail should return GetDummyDetail instance", () => {
+    it("getDummyDetailSuccess should return GetDummyDetail instance", () => {
         const dummy: Dummy = {
             id: 1,
             name: "name",
             sourceSystem: DummySourceSystem.EXTERNAL,
             furtherInformation: "information"
         };
-        const action: DummyActions = getDummyDetail(dummy);
+        const action: DummyActions = getDummyDetailSuccess(dummy);
         expect(action.type).toBe(DUMMY_DETAIL);
         expect(action.payload).toBe(dummy);
     });
