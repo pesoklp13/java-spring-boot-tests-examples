@@ -1,5 +1,6 @@
 import {API, apiClient} from "./api.config";
 import {DummyController} from "./dummy/dummy.controller";
+jest.mock("./dummy/dummy.controller");
 
 describe("Axios api configuration", () => {
 
@@ -10,6 +11,8 @@ describe("Axios api configuration", () => {
     it("should have API instance with dummy resource", () => {
         const dummyController: DummyController = API.dummy;
         expect(dummyController).not.toBeNull();
+        expect(DummyController).toHaveBeenCalledTimes(1);
+        expect(DummyController).toHaveBeenCalledWith(apiClient);
     });
 
 });
