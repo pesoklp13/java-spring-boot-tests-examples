@@ -5,12 +5,14 @@ import {connect} from "react-redux";
 import {Action} from "redux";
 import {getDummyDetail} from "../store/actions/dummy/dummy-async.creators";
 import {ThunkDispatch} from "redux-thunk";
+import {AppState} from "../store/store.config";
 
 export interface DummiesFilterProps {
-    handleClick: () => void
+    handleClick: () => void,
+    selectedDummy: Dummy
 }
 
-class DummiesFilterComponentRenderer extends React.Component<DummiesFilterProps,DummyState> {
+class DummiesFilterComponentRenderer extends React.Component<DummiesFilterProps,Partial<DummyState>> {
 
     constructor(props: any) {
         super(props);
@@ -32,11 +34,11 @@ class DummiesFilterComponentRenderer extends React.Component<DummiesFilterProps,
 
     public render(): React.ReactNode {
         console.log("rendering");
-        const dummy: Dummy = this.state.selectedDummy as Dummy;
+        const dummy: Dummy = this.props.selectedDummy;
 
         return (
             <div>
-                {dummy.name ? dummy.name : "unknown"}
+                {dummy ? dummy.name : "unknown"}
                 <div onClick={() => {this.props.handleClick()}}>
                     tak ma klikni kua
                 </div>
@@ -45,7 +47,9 @@ class DummiesFilterComponentRenderer extends React.Component<DummiesFilterProps,
     }
 }
 
-export const DummiesFilterComponent = connect(null,
+export const DummiesFilterComponent = connect((state: AppState) => {
+        return state.dummies;
+    },
     (dispatch: ThunkDispatch<DummyState, any, Action>) => {
         return {
             handleClick: () => {
