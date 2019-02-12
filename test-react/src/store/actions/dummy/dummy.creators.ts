@@ -25,6 +25,7 @@ export const findDummiesBySourceSystemSuccess = (dummies: Dummy[]): FindDummiesB
 };
 
 export const getDummyDetailSuccess = (dummy: Dummy): GetDummyDetail => {
+    console.log("getting data");
     return {
         type: DUMMY_DETAIL,
         payload: dummy
