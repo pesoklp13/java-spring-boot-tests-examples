@@ -10,9 +10,9 @@ export const LabeledRadioButton = (props: LabeledRadioButtonProps) => {
     return (
         <Field name={props.name}>
             {
-                ({field}: FieldProps) => (
+                ({field, form}: FieldProps) => (
                     <label>
-                        <input type={"radio"} {...props} onChange={field.onChange}/>
+                        <input type={"radio"} {...props} onChange={field.onChange} checked={form.values[props.name] === props.value}/>
                         {props.value}
                     </label>
                 )
