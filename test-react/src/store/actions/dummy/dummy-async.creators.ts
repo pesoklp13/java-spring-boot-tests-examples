@@ -30,7 +30,6 @@ export const getDummyDetail = (id: number) => {
     return (dispatch: ThunkDispatch<DummyState, any, DummyActions>) => {
         return API.dummy.getDummyDetail(id).then(
             (response: AxiosResponse<Dummy>) => {
-                console.log("trying it");
                 dispatch(getDummyDetailSuccess(response.data));
             }
         )

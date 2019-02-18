@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Field, Formik} from "formik";
-import classNames from "classnames";
-import {LabeledRadioButton} from "./components/formik/labeled-radio-button.component";
+import {Formik} from "formik";
 
 class App extends Component {
     render() {
@@ -13,8 +11,6 @@ class App extends Component {
                 }}>{
                     (formik: any) => (
                         <div>
-                            <LabeledRadioButton name={"pesok"} value={"value1"}/>
-                            <LabeledRadioButton name={"pesok"} value={"supervalue"}/>
                             <button onClick={formik.submitForm}>submit</button>
                         </div>
                     )
