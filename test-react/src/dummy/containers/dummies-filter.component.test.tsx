@@ -42,6 +42,14 @@ describe("DummiesFilterComponent", () => {
         const dispatch = jest.fn(() => Promise.resolve());
         const {filterDummies} = mapDispatchToProps(dispatch);
 
+        const SEARCH_ALL = 0;
+        const SEARCH_BY_SOURCE_SYSTEM = 1;
+
+        beforeEach(() => {
+            (searchAllDummies as jest.Mock).mockImplementation(() => SEARCH_ALL);
+            (findDummiesBySourceSystem as jest.Mock).mockImplementation(() => SEARCH_BY_SOURCE_SYSTEM);
+        });
+
         afterEach(() => {
             jest.clearAllMocks();
         });
@@ -51,12 +59,15 @@ describe("DummiesFilterComponent", () => {
 
             expect(searchAllDummies).toBeCalled();
             expect(findDummiesBySourceSystem).not.toBeCalled();
+
+            expect(dispatch).toBeCalledWith(SEARCH_ALL);
         });
 
         it("should call findDummiesBySourceSystem", () => {
             filterDummies(DummySourceSystem.EXTERNAL);
 
             expect(findDummiesBySourceSystem).toBeCalledWith(DummySourceSystem.EXTERNAL);
+            expect(dispatch).toBeCalledWith(SEARCH_BY_SOURCE_SYSTEM);
 
             filterDummies(DummySourceSystem.INTERNAL);
 
@@ -64,6 +75,8 @@ describe("DummiesFilterComponent", () => {
 
             expect(searchAllDummies).not.toBeCalled();
             expect(findDummiesBySourceSystem).toBeCalledTimes(2);
+            expect(dispatch).toBeCalledWith(SEARCH_BY_SOURCE_SYSTEM);
+            expect(dispatch).not.toBeCalledWith(SEARCH_ALL);
 
         });
     });
