@@ -1,7 +1,8 @@
 package pesoklp13.examples.tests.dummy
 
 import org.springframework.boot.SpringBootConfiguration
+import org.springframework.boot.autoconfigure.AutoConfigurationPackage
 
 @SpringBootConfiguration
-class DummyTestsConfiguration {
-}
+@AutoConfigurationPackage
+class DummyTestsConfiguration

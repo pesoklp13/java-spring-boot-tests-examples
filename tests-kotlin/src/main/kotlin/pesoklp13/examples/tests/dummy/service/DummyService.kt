@@ -56,7 +56,7 @@ class DummyService(
 
         dummyModel = dummyModelOptional.get()
 
-        return if (dummyModel.isExternal) {
+        return if (dummyModel.external) {
             val externalDummy = externalServiceApi.getDummy(id)
             convertToDummy(dummyModel, externalDummy!!)
         } else {
@@ -80,14 +80,14 @@ class DummyService(
     }
 
     private fun convertToDummy(dummyModel: DummyModel): Dummy {
-        val sourceSystem = if(dummyModel.isExternal) {
+        val sourceSystem = if(dummyModel.external) {
             DummySourceSystem.EXTERNAL
         } else {
             DummySourceSystem.INTERNAL
         }
 
         return Dummy(
-            id = dummyModel.id,
+            id = dummyModel.id!!,
             name = dummyModel.name,
             sourceSystem = sourceSystem)
     }

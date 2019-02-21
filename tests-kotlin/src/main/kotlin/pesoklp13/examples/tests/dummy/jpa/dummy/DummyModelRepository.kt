@@ -21,7 +21,7 @@ interface DummyModelRepository : CrudRepository<DummyModel, Long> {
 )
 data class DummyModel(
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "dummy_model_seq")
-    val id: Long,
+    val id: Long? = null,
     val name: String,
-    val isExternal: Boolean
+    val external: Boolean
 )

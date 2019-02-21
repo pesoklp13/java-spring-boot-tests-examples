@@ -160,7 +160,7 @@ class DummyServiceTest {
     private fun createDummyModel(name: String, external: Boolean, id: Long): DummyModel {
         return DummyModel(
             id = id,
-            isExternal = external,
+            external = external,
             name = name
         )
     }
