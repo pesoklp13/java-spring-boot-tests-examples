@@ -6,6 +6,14 @@ import * as React from "react";
 
 jest.mock("../../store/actions/dummy/dummy-async.creators");
 
+class MockedDummiesListComponent extends DummiesListComponent {
+
+}
+
+const renderRowMock = jest.fn();
+
+MockedDummiesListComponent.prototype.renderRow = renderRowMock;
+
 describe("DummiesListComponent", () => {
 
     const stubbedDummy: Dummy = {
@@ -25,8 +33,15 @@ describe("DummiesListComponent", () => {
     });
 
     it("should display list of dummies when filtered", () => {
-        const tree = shallow(<DummiesListComponent getDetail={getDetail}/>);
-        const rows = tree.find(".row");
+        const secondDummy = {...stubbedDummy, ...{id: 2}};
+
+        const dummies = [stubbedDummy, secondDummy];
+
+        shallow(<MockedDummiesListComponent getDetail={getDetail} dummies={dummies}/>);
+
+        expect(renderRowMock).toBeCalledTimes(2);
+        expect(renderRowMock).toBeCalledWith(stubbedDummy);
+        expect(renderRowMock).toBeCalledWith(secondDummy);
     });
 
     it("should call getDetail when clicked on button", () => {

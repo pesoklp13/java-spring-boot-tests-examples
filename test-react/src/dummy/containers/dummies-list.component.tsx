@@ -5,6 +5,7 @@ import {AppState} from "../../store/store.config";
 import {ThunkDispatch} from "redux-thunk";
 import {Action} from "redux";
 import {getDummyDetail} from "../../store/actions/dummy/dummy-async.creators";
+import classNames from "classnames";
 
 export interface DummiesListProps {
     getDetail: (id: number) => void
@@ -21,7 +22,19 @@ export class DummiesListComponent extends React.Component<DummiesListProps> {
     }
 
     public render(): React.ReactNode {
-        return null;
+        return (
+            <div>
+                {this.props.dummies ? this.props.dummies.map((dummy: Dummy) => this.renderRow(dummy)) : "No dummies selected"}
+            </div>
+        );
+    }
+
+    public renderRow(dummy: Dummy) {
+        return (
+            <div className={classNames("row")}>
+                row
+            </div>
+        );
     }
 }
 
