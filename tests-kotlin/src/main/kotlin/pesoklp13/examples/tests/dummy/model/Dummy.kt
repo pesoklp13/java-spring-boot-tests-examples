@@ -10,9 +10,9 @@ data class Dummy(
     val id: Long,
     val name: String,
     val sourceSystem: DummySourceSystem,
-    val furtherInformation: String,
-    val internalInformation: String? = null,
-    val externalInformation: String? = null
+    var furtherInformation: String? = null,
+    var internalInformation: String? = null,
+    var externalInformation: String? = null
 )
 
 enum class DummySourceSystem {

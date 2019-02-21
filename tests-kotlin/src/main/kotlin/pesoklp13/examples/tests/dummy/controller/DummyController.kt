@@ -32,7 +32,7 @@ class DummyController(private val dummyService: DummyService) {
     @RequestMapping(method = [RequestMethod.GET])
     fun getDummies(response: HttpServletResponse): List<Dummy>? {
         val dummies = dummyService.getDummies(null)
-        if (dummies == null || dummies.isEmpty()) {
+        if (dummies.isEmpty()) {
             response.status = HttpServletResponse.SC_NOT_FOUND
         }
 
@@ -59,7 +59,7 @@ class DummyController(private val dummyService: DummyService) {
         sourceSystem: DummySourceSystem, response: HttpServletResponse
     ): List<Dummy>? {
         val dummies = dummyService.getDummies(sourceSystem)
-        if (dummies == null || dummies.isEmpty()) {
+        if (dummies.isEmpty()) {
             response.status = HttpServletResponse.SC_NOT_FOUND
         }
 
@@ -78,7 +78,7 @@ class DummyController(private val dummyService: DummyService) {
     fun getDummyDetail(
         @ApiParam(value = "id", required = true, example = "1")
         @PathVariable("id")
-        id: Long?, response: HttpServletResponse
+        id: Long, response: HttpServletResponse
     ): Dummy? {
         val dummy = dummyService.getDummyDetail(id)
         if (dummy == null) {
