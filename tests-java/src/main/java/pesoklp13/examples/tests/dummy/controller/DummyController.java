@@ -1,13 +1,16 @@
 package pesoklp13.examples.tests.dummy.controller;
 
 import io.swagger.annotations.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import pesoklp13.examples.tests.dummy.model.Dummy;
 import pesoklp13.examples.tests.dummy.model.enums.DummySourceSystem;
+import pesoklp13.examples.tests.dummy.service.DummyService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Api(
@@ -18,7 +21,10 @@ import java.util.List;
         produces = { "application/json" }
 )
 @RestController
+@RequiredArgsConstructor
 public class DummyController {
+
+    private final DummyService dummyService;
 
     @ApiOperation(
             value = "get list of dummies",
@@ -36,8 +42,13 @@ public class DummyController {
     @RequestMapping(
             method = RequestMethod.GET
     )
-    public List<Dummy> getDummies(){
-        return null;
+    public List<Dummy> getDummies(HttpServletResponse response){
+        List<Dummy> dummies = dummyService.getDummies(null);
+        if(dummies == null || dummies.size() == 0){
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+
+        return dummies;
     }
 
     @ApiOperation(
@@ -60,8 +71,13 @@ public class DummyController {
     )
     public List<Dummy> getDummiesBySourceSystem(
             @ApiParam(value = "sourceSystem", required = true, allowableValues = "INTERNAL, EXTERNAL")
-            @PathVariable("sourceSystem") DummySourceSystem sourceSystem){
-        return null;
+            @PathVariable("sourceSystem") DummySourceSystem sourceSystem, HttpServletResponse response){
+        List<Dummy> dummies = dummyService.getDummies(sourceSystem);
+        if(dummies == null || dummies.size() == 0){
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+
+        return dummies;
     }
 
     @ApiOperation(
@@ -83,7 +99,12 @@ public class DummyController {
     )
     public Dummy getDummyDetail(
             @ApiParam(value = "id", required = true, example = "1")
-            @PathVariable("id") Long id){
-        return null;
+            @PathVariable("id") Long id, HttpServletResponse response){
+        Dummy dummy = dummyService.getDummyDetail(id);
+        if (dummy == null){
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+
+        return dummy;
     }
 }

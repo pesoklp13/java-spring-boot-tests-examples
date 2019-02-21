@@ -32,6 +32,7 @@ dependencies {
     compile("org.projectlombok:lombok:+")
 
     testCompile("junit", "junit", "4.12")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 configure<JavaPluginConvention> {
