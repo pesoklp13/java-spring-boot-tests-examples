@@ -1,4 +1,4 @@
-package pesoklp13.examples.tests.dummy
+package pesoklp13.examples.tests.dummy.app
 
 import org.springframework.boot.Banner
 import org.springframework.boot.autoconfigure.SpringBootApplication

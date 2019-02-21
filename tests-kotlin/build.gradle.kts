@@ -31,6 +31,9 @@ dependencies {
     
     compile( "io.springfox:springfox-swagger2:$swaggerVersion")
     compile("io.springfox:springfox-swagger-ui:$swaggerVersion")
+
+    testCompile("junit", "junit", "4.12")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.withType<KotlinCompile> {
@@ -39,5 +42,5 @@ tasks.withType<KotlinCompile> {
 }
 
 springBoot {
-    mainClassName = "pesoklp13.examples.tests.dummy.DummyApplication"
+    mainClassName = "pesoklp13.examples.tests.dummy.app.DummyApplication"
 }

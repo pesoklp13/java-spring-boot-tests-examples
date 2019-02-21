@@ -7,27 +7,37 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RestController
 import pesoklp13.examples.tests.dummy.model.Dummy
 import pesoklp13.examples.tests.dummy.model.DummySourceSystem
+import pesoklp13.examples.tests.dummy.service.DummyService
+import javax.servlet.http.HttpServletResponse
 
 @Api(tags = ["Dummy Controller"])
 @RequestMapping(value = ["/api/dummies"], produces = ["application/json"])
 @RestController
-class DummyController {
+class DummyController(private val dummyService: DummyService) {
 
-    val dummies: List<Dummy>?
-        @ApiOperation(
-            value = "get list of dummies",
-            response = Dummy::class,
-            responseContainer = "List",
-            nickname = "getDummies"
-        )
-        @ApiResponses(
-            value = [ApiResponse(code = 200, message = "Successful", response = Dummy::class), ApiResponse(
-                code = 404,
-                message = "Dummies not found"
-            )]
-        )
-        @RequestMapping(method = [RequestMethod.GET])
-        get() = null
+    @ApiOperation(
+        value = "get list of dummies",
+        response = Dummy::class,
+        responseContainer = "List",
+        tags = ["dummy"],
+        nickname = "getDummies"
+    )
+    @ApiResponses(
+        value = [ApiResponse(
+            code = 200,
+            message = "Successful",
+            response = Dummy::class
+        ), ApiResponse(code = 404, message = "Dummies not found")]
+    )
+    @RequestMapping(method = [RequestMethod.GET])
+    fun getDummies(response: HttpServletResponse): List<Dummy>? {
+        val dummies = dummyService.getDummies(null)
+        if (dummies == null || dummies.isEmpty()) {
+            response.status = HttpServletResponse.SC_NOT_FOUND
+        }
+
+        return dummies
+    }
 
     @ApiOperation(
         value = "get list of dummies filtered by source system",
@@ -46,9 +56,14 @@ class DummyController {
     fun getDummiesBySourceSystem(
         @ApiParam(value = "sourceSystem", required = true, allowableValues = "INTERNAL, EXTERNAL")
         @PathVariable("sourceSystem")
-        sourceSystem: DummySourceSystem
+        sourceSystem: DummySourceSystem, response: HttpServletResponse
     ): List<Dummy>? {
-        return null
+        val dummies = dummyService.getDummies(sourceSystem)
+        if (dummies == null || dummies.isEmpty()) {
+            response.status = HttpServletResponse.SC_NOT_FOUND
+        }
+
+        return dummies
     }
 
     @ApiOperation(value = "get detail of dummy", response = Dummy::class, nickname = "getDummyDetail")
@@ -63,8 +78,13 @@ class DummyController {
     fun getDummyDetail(
         @ApiParam(value = "id", required = true, example = "1")
         @PathVariable("id")
-        id: Long?
+        id: Long?, response: HttpServletResponse
     ): Dummy? {
-        return null
+        val dummy = dummyService.getDummyDetail(id)
+        if (dummy == null) {
+            response.status = HttpServletResponse.SC_NOT_FOUND
+        }
+
+        return dummy
     }
 }
