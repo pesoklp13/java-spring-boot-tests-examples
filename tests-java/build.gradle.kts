@@ -34,6 +34,8 @@ dependencies {
 
     testCompile("junit", "junit", "4.12")
     testCompile("org.springframework.boot:spring-boot-starter-test")
+    
+    testCompile("org.hsqldb:hsqldb:+")
 }
 
 configure<JavaPluginConvention> {
