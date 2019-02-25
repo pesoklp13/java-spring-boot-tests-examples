@@ -1,4 +1,5 @@
 import {
+    CloseDummyDetail, DUMMY_CLOSE,
     DUMMY_DETAIL,
     DUMMY_FIND_BY_SOURCE_SYSTEM,
     DUMMY_SEARCH_ALL,
@@ -28,5 +29,12 @@ export const getDummyDetailSuccess = (dummy: Dummy): GetDummyDetail => {
     return {
         type: DUMMY_DETAIL,
         payload: dummy
+    }
+};
+
+export const closeDummyDetail = (): CloseDummyDetail => {
+    return {
+        type: DUMMY_CLOSE,
+        payload: undefined
     }
 };

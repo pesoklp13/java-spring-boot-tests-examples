@@ -4,6 +4,7 @@ import {Dummy} from "../../../api/dummy/dummy.model";
 export const DUMMY_SEARCH_ALL = "@dummy/SEARCH_ALL";
 export const DUMMY_FIND_BY_SOURCE_SYSTEM = "@dummy/FIND_BY_SOURCE_SYSTEM";
 export const DUMMY_DETAIL = "@dummy/DETAIL";
+export const DUMMY_CLOSE = "@dummy/CLOSE";
 
 export interface SearchAllDummies extends Action<string> {
     type: "@dummy/SEARCH_ALL",
@@ -20,4 +21,9 @@ export interface GetDummyDetail extends Action<string> {
     payload: Dummy
 }
 
-export type DummyActions = SearchAllDummies | FindDummiesBySourceSystem | GetDummyDetail;
+export interface CloseDummyDetail extends Action<string> {
+    type: "@dummy/CLOSE",
+    payload: undefined
+}
+
+export type DummyActions = SearchAllDummies | FindDummiesBySourceSystem | GetDummyDetail | CloseDummyDetail;

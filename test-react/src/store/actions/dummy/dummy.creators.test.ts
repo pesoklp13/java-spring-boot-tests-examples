@@ -1,5 +1,10 @@
-import {findDummiesBySourceSystemSuccess, getDummyDetailSuccess, searchAllDummiesSuccess} from "./dummy.creators";
-import {DUMMY_DETAIL, DUMMY_FIND_BY_SOURCE_SYSTEM, DUMMY_SEARCH_ALL, DummyActions} from "./dummy.actions";
+import {
+    closeDummyDetail,
+    findDummiesBySourceSystemSuccess,
+    getDummyDetailSuccess,
+    searchAllDummiesSuccess
+} from "./dummy.creators";
+import {DUMMY_CLOSE, DUMMY_DETAIL, DUMMY_FIND_BY_SOURCE_SYSTEM, DUMMY_SEARCH_ALL, DummyActions} from "./dummy.actions";
 import {Dummy, DummySourceSystem} from "../../../api/dummy/dummy.model";
 
 describe("Dummy creators tests", () => {
@@ -26,6 +31,12 @@ describe("Dummy creators tests", () => {
         const action: DummyActions = getDummyDetailSuccess(dummy);
         expect(action.type).toBe(DUMMY_DETAIL);
         expect(action.payload).toBe(dummy);
+    });
+
+    it("closeDummyDetail should return undefined payload", () => {
+       const action: DummyActions = closeDummyDetail();
+       expect(action.type).toBe(DUMMY_CLOSE);
+       expect(action.payload).toBeUndefined();
     });
 
 });

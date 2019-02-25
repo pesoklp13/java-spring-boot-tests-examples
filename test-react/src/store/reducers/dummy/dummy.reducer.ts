@@ -15,11 +15,10 @@ export interface DummyState {
 export const DummyReducer: Reducer<DummyState, DummyActions> = (state: DummyState = {}, action: DummyActions) => {
     switch(action.type) {
         case DUMMY_SEARCH_ALL:
-            break;
         case DUMMY_FIND_BY_SOURCE_SYSTEM:
-            break;
+            return {...state, ...{filteredDummies: action.payload}};
         case DUMMY_DETAIL:
-            break;
+            return {...state, ...{selectedDummy: action.payload}}
     }
 
     return state;
